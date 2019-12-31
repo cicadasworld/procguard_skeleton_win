@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<procList>
+    <proc name="mapserver-tomcat" enabled="true">
+        <param name="description" value="Tomcat" />
+        <param name="max_tries" value="-1" />
+        <param name="instances" value="1" />
+        <param name="grace_stop" value="0" />
+        <param name="wait_seconds" value="5" />
+        <param name="workDirectory" value="${exeRunDir}\apache-tomcat-8.0.36\bin" />
+
+        <!-- 启动该子进程的可执行程序及命令行参数 -->
+        <param name="executable" value="${exeRunDir}\jre1.8.0_92\bin\java.exe" />
+        <param name="args"><![CDATA[
+            -Dwebapp.name=mavenreposerver
+            -DGT4WSS_HOME=${exeRunDir}
+            -DGT4WSS_BASE=${exeRunDir}
+            -Xms512m -Xmx2048m -XX:MaxMetaspaceSize=512m
+            -Djdk.tls.ephemeralDHKeySize=2048
+            -Djava.net.preferIPv4Stack=true
+            -Djava.util.logging.config.file="${exeRunDir}\apache-tomcat-8.0.36\conf\logging.properties"
+            -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+            -Djava.endorsed.dirs="${exeRunDir}\apache-tomcat-8.0.36\endorsed"
+            -Dcatalina.base="${exeRunDir}\apache-tomcat-8.0.36"
+            -Dcatalina.home="${exeRunDir}\apache-tomcat-8.0.36"
+            -Djava.io.tmpdir="${exeRunDir}\apache-tomcat-8.0.36\temp"
+            -classpath " \
+                ${exeRunDir}\apache-tomcat-8.0.36\bin\bootstrap.jar;  \
+                ${exeRunDir}\apache-tomcat-8.0.36\bin\tomcat-juli.jar \
+                "
+            org.apache.catalina.startup.Bootstrap start
+        ]]>
+        </param>
+
+        <!-- 停止该子进程的可执行程序及命令行参数(可选) -->
+        <param name="stopExecutable" value="${exeRunDir}\jre1.8.0_92\bin\java.exe" />
+        <param name="stopArgs"><![CDATA[
+            -Djdk.tls.ephemeralDHKeySize=2048
+            -Djava.net.preferIPv4Stack=true
+            -Djava.util.logging.config.file="${exeRunDir}\apache-tomcat-8.0.36\conf\logging.properties"
+            -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+            -Djava.endorsed.dirs="${exeRunDir}\apache-tomcat-8.0.36\endorsed"
+            -Dcatalina.base="${exeRunDir}\apache-tomcat-8.0.36"
+            -Dcatalina.home="${exeRunDir}\apache-tomcat-8.0.36"
+            -Djava.io.tmpdir="${exeRunDir}\apache-tomcat-8.0.36\temp"
+            -classpath " \
+                ${exeRunDir}\apache-tomcat-8.0.36\bin\bootstrap.jar; \
+                ${exeRunDir}\apache-tomcat-8.0.36\bin\tomcat-juli.jar \
+                "
+            org.apache.catalina.startup.Bootstrap stop
+        ]]>
+        </param>
+    </proc>
+
+</procList>
+

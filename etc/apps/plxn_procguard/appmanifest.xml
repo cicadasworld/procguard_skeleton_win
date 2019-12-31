@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<!-- THIS FILE WAS GENERATED AT 2019/10/22 14:18:23 AUTOMATICALLY. -->
+
+<application>
+    <app-params>
+        <param name="version" value="V1.2.0" />
+        <param name="name" value="plxn_procguard" />
+        <param name="displayName" value="plxn_procguard" />
+        <param name="description" value="plxn_procguard的描述。" />
+        <param name="logo" value="plxn_procguard, GT Group" />
+    </app-params>
+</application>
